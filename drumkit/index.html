@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles.css" type="text/css">
+    <title>Drum Kit Javascript30 / FCC</title>
+
+</head>
+<body>
+  <div id="keys">
+      <div class="top row">
+          <div class="key blank"></div>
+          <div data-key="87" class="key">
+              <kbd>W</kbd>
+              <span class="sound">ever</span>
+          </div>
+          <div data-key="69" class="key">
+              <kbd>E</kbd>
+              <span class="sound">after</span>
+          </div>
+          <div class="key blank"></div>
+          <div class="key blank"></div>
+          <div class="key blank"></div>
+          <div class="key blank"></div>
+          <div data-key="73" class="key">
+              <kbd>I</kbd>
+              <span class="sound">hour</span>
+          </div>
+          <div data-key="79" class="key">
+              <kbd>O</kbd>
+              <span class="sound">over</span>
+          </div>
+          <div class="key blank"></div>
+      </div>
+      <div class="middle row">
+          <div data-key="65" class="key">
+              <kbd>A</kbd>
+              <span class="sound">harder</span>
+          </div>
+          <div data-key="83" class="key">
+              <kbd>S</kbd>
+              <span class="sound">better</span>
+          </div>
+          <div data-key="68" class="key">
+              <kbd>D</kbd>
+              <span class="sound">faster</span>
+          </div>
+          <div data-key="70" class="key">
+              <kbd>F</kbd>
+              <span class="sound">stronger</span>
+          </div>
+          <div class="key blank" ></div>
+          <div class="key blank"></div>
+          <div data-key="74" class="key">
+              <kbd>J</kbd>
+              <span class="sound">do it</span>
+          </div>
+          <div data-key="75" class="key">
+              <kbd>K</kbd>
+              <span class="sound">make it</span>
+          </div>
+          <div data-key="76" class="key">
+              <kbd>L</kbd>
+              <span class="sound">work it</span>
+          </div>
+          <div data-key="186" class="key">
+              <kbd>;</kbd>
+              <span class="sound">make us</span>
+          </div>
+      </div>
+      <div class="bottom row">
+          <div class="key blank"></div>
+          <div data-key="88" class="key">
+              <kbd>X</kbd>
+              <span class="sound">our</span>
+          </div>
+          <div data-key="67" class="key">
+              <kbd>C</kbd>
+              <span class="sound">work is</span>
+          </div>
+          <div class="key blank" ></div>
+          <div class="key blank"></div>
+          <div class="key blank"></div>
+          <div class="key blank"></div>
+          <div data-key="188" class="key">
+              <kbd>,</kbd>
+              <span class="sound">more than</span>
+          </div>
+          <div data-key="190" class="key">
+              <kbd>.</kbd>
+              <span class="sound">never</span>
+          </div>
+          <div class="key blank"></div>
+      </div>
+  </div>
+
+      <audio data-key="87" src="sounds/ever.wav"></audio>
+      <audio data-key="69" src="sounds/after.wav"></audio>
+      <audio data-key="73" src="sounds/hour.wav"></audio>
+      <audio data-key="79" src="sounds/over.wav"></audio>
+      <audio data-key="65" src="sounds/harder.wav"></audio>
+      <audio data-key="83" src="sounds/better.wav"></audio>
+      <audio data-key="68" src="sounds/faster.wav"></audio>
+      <audio data-key="70" src="sounds/stronger.wav"></audio>
+      <audio data-key="74" src="sounds/do%20it.wav"></audio>
+      <audio data-key="75" src="sounds/make%20it.wav"></audio>
+      <audio data-key="76" src="sounds/work%20it.wav"></audio>
+      <audio data-key="186" src="sounds/makes%20us.wav"></audio>
+      <audio data-key="88" src="sounds/our.wav"></audio>
+      <audio data-key="67" src="sounds/work%20is.wav"></audio>
+      <audio data-key="188" src="sounds/more%20than.wav"></audio>
+      <audio data-key="190" src="sounds/never.wav"></audio>
+
+  <script>
+      window.addEventListener('keydown', playsound)
+
+      function playsound(event) {
+              const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+              const key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
+              if (!audio) return
+              console.log(audio)
+              audio.currentTime=0
+              audio.play()
+              key.classList.add('playing')
+              console.log(key)
+          }
+
+
+
+
+      function removeTransition (e) {
+            if (e.propertyName !== 'transform') return;
+          console.log(e.propertyName)
+          this.classList.remove('playing')
+      }
+
+      const keys = document.querySelectorAll('.key')
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+            
+
+  </script>
+
+</body>
+</html>
